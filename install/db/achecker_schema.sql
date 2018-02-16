@@ -308,7 +308,7 @@ CREATE TABLE `themes` (
   `title` varchar(80) NOT NULL DEFAULT '',
   `version` varchar(10) NOT NULL DEFAULT '',
   `dir_name` varchar(20) NOT NULL DEFAULT '',
-  `last_updated` date NOT NULL DEFAULT '0000-00-00',
+  `last_updated` date NOT NULL DEFAULT '2000-01-01',
   `extra_info` text,
   `status` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`title`)
