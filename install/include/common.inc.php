@@ -39,7 +39,7 @@ require('include/classes/sqlutility.php');
 
 
 function my_add_null_slashes( $string ) {
-    return @mysql_real_escape_string(stripslashes($string));
+    return @mysqli_real_escape_string(stripslashes($string));
 }
 function my_null_slashes($string) {
 	return $string;
@@ -49,7 +49,7 @@ if ( get_magic_quotes_gpc() == 1 ) {
 	$addslashes   = 'my_add_null_slashes';
 	$stripslashes = 'stripslashes';
 } else {
-	$addslashes   = 'mysql_real_escape_string';
+	$addslashes   = 'mysqli_real_escape_string';
 	$stripslashes = 'my_null_slashes';
 }
 
@@ -112,7 +112,7 @@ function queryFromFile($sql_file_path)
 					else
 						$errors[] = 'Table <strong>'.$table.'</strong> alteration failed.';
 			}elseif($prefixed_query[1] == 'DROP TABLE'){
-				mysqli_query($prefixed_query[1] . ' ' .$table,$db);
+				mysqli_query($db,$prefixed_query[1] . ' ' .$table);
 			}elseif($prefixed_query[1] == 'UPDATE'){
 				mysqli_query($db,$prefixed_query[0]);
 			}
