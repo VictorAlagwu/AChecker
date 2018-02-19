@@ -30,7 +30,7 @@ function unregister_GLOBALS() {
    foreach ($input as $k => $v) {
        if (!in_array($k, $noUnset) && isset($GLOBALS[$k])) { unset($GLOBALS[$k]); }
    }
-}
+} 
 
 /*
  * structure of this document (in order):
@@ -90,7 +90,7 @@ require_once(AC_INCLUDE_PATH.'constants.inc.php');
 /***** end session initilization block ****/
 
 function my_add_null_slashes( $string ) {
-    return mysql_real_escape_string(stripslashes($string));
+    return mysqli_real_escape_string(stripslashes($string));
 }
 
 function my_null_slashes($string) {
@@ -101,7 +101,7 @@ if ( get_magic_quotes_gpc() == 1 ) {
 	$addslashes   = 'my_add_null_slashes';
 	$stripslashes = 'stripslashes';
 } else {
-	$addslashes   = 'mysql_real_escape_string';
+	$addslashes   = 'mysqli_real_escape_string';
 	$stripslashes = 'my_null_slashes';
 }
 

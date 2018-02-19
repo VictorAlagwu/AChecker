@@ -23,7 +23,7 @@ and reset the permissions on the config.inc.php file to read only.</p>
 
 <br />
 
-<form method="get" action="../index.php">
+<form method="GET" action="../index.php">
 	<div align="center">
 		<input type="submit" name="submit" value="&raquo; Go To AChecker!" class="button" />
 	</div>
