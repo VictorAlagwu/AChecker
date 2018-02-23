@@ -37,9 +37,10 @@ $_defaults['content_dir'] = realpath('../').DIRECTORY_SEPARATOR.'temp';
 
 require('include/classes/sqlutility.php');
 
+$db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 function my_add_null_slashes( $string ) {
-    return @mysqli_real_escape_string(stripslashes($string));
+    return @mysqli_real_escape_string($db,stripslashes($string));
 }
 function my_null_slashes($string) {
 	return $string;
