@@ -26,9 +26,11 @@ class DAO {
 	
 	function DAO()
 	{
+	
 		if (!isset($this->db))
 		{
-			$this->db = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+			$this->db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+			
 			if (!$this->db) {
 				die('Unable to connect to db.');
 				/* AC_ERROR_NO_DB_CONNECT 

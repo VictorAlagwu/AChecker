@@ -35,7 +35,7 @@ if (! isset($GLOBALS['_SAVANT2']['error'])) {
 	);
 }
 
-
+ 
 /**
 * 
 * Provides an object-oriented template system.

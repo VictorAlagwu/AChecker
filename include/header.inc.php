@@ -12,7 +12,7 @@
 // $Id$
 
 if (!defined('AC_INCLUDE_PATH')) { exit; }
-
+ 
 global $myLang;
 global $savant;
 global $onload;
@@ -58,7 +58,7 @@ if ($myLang->isRTL()) {
 } else {
 	$savant->assign('rtl_css', '');
 }
-
+ 
 $savant->assign('lang_code', $_SESSION['lang']);
 $savant->assign('lang_charset', $myLang->getCharacterSet());
 $savant->assign('base_path', AC_BASE_HREF);
@@ -92,6 +92,7 @@ if (isset($_pages[$current_page]['guide']))
 $savant->assign('custom_head', $custom_head);
 
 if ($onload)	$savant->assign('onload', $onload);
+
 
 $savant->display('include/header.tmpl.php');
 
