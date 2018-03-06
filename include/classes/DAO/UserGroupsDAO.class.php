@@ -75,7 +75,7 @@ class UserGroupsDAO extends DAO {
 			}
 			else
 			{
-				return mysqli_insert_id();
+				return mysql_insert_id();
 			}
 		}
 		else

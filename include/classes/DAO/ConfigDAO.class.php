@@ -23,7 +23,7 @@ if (!defined('AC_INCLUDE_PATH')) exit;
 require_once(AC_INCLUDE_PATH. 'classes/DAO/DAO.class.php');
 
 class ConfigDAO extends DAO {
- 
+
 	/**
 	* Return all config' information
 	* @access  public

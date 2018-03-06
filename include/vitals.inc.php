@@ -30,7 +30,7 @@ function unregister_GLOBALS() {
    foreach ($input as $k => $v) {
        if (!in_array($k, $noUnset) && isset($GLOBALS[$k])) { unset($GLOBALS[$k]); }
    }
-} 
+}
 
 /*
  * structure of this document (in order):
@@ -88,9 +88,6 @@ require_once(AC_INCLUDE_PATH.'constants.inc.php');
 	unregister_GLOBALS();
 
 /***** end session initilization block ****/
-
-/***** Added by Victor ****/
-$db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 function my_add_null_slashes( $string ) {
     return mysqli_real_escape_string($db, stripslashes($string));

@@ -168,7 +168,7 @@ if (
 	$server_protocol = 'https://';
 } else {
 	$server_protocol = 'http://';
-} 
+}
 
 $dir_deep	 = substr_count(AC_INCLUDE_PATH, '..');
 $url_parts	 = explode('/', $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']);

@@ -19,7 +19,7 @@ if(isset($_POST['submit'])) {
 
 	//check DB & table connection
 
-	$db = mysqli_connect($_POST['db_host'] , $_POST['db_login'], $_POST['db_password'] , $_POST['db_name']);
+	$db = @mysqli_connect($_POST['db_host'], $_POST['db_login'], $_POST['db_password'], $_PORT['db_name']);
 	if (!$db) {
 		$errors[] = 'Unable to connect to database server.';
 	} else {
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
 		}
 
 		if (!isset($errors)){
-			if (!mysqli_select_db($db,$_POST['db_name'])) {
+			if (!mysqli_select_db($db, $_POST['db_name'])) {
 				$sql = "CREATE DATABASE $_POST[db_name] CHARACTER SET utf8 COLLATE utf8_general_ci";
 				$result = mysqli_query($db, $sql);
 				if (!$result) {
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
 			} else {
 				/* Check if the database that existed is in UTF-8, if not, ask for retry */
 				$sql = "SHOW CREATE DATABASE $_POST[db_name]";
-				$result = mysqli_query($db,$sql);
+				$result = mysqli_query($db, $sql);
 				$row = mysqli_fetch_assoc($result);
 				
 				if (!preg_match('/CHARACTER SET utf8/i', $row['Create Database'])){
@@ -60,7 +60,7 @@ if(isset($_POST['submit'])) {
 			/* @See include/classes/dbmanager.php */
 			queryFromFile('db/achecker_schema.sql');
 			queryFromFile('db/language_text.sql');
-
+			queryFromFile('db/achecker_schema_update.sql');
 			if (!$errors) {
 				print_progress($step);
 

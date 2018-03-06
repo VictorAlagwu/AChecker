@@ -57,12 +57,12 @@ if (isset($_POST['submit'])) {
 
 		if ($_POST['step1']['old_path'] != '') {
 			// get some usage data from this upgrade:
-			$db     = @mysqli_connect($_POST['step1']['db_host'], $_POST['step1']['db_login'], urldecode($_POST['step1']['db_password'],$_POST['step1']['db_name']));
-			@mysqli_select_db($db,$_POST['step1']['db_name']);
+			$db     = @mysqli_connect($_POST['step1']['db_host'], $_POST['step1']['db_login'], urldecode($_POST['step1']['db_password']),$_POST['step1']['db_name']);
+			@mysqli_select_db($db, $_POST['step1']['db_name']);
 
 			$db_size = 0; // db size in bytes
 			$sql = 'SHOW TABLE STATUS';
-			$result = mysqli_query($db,$sql);
+			$result = mysqli_query($db, $sql);
 			while ($row = mysqli_fetch_assoc($result)) {
 				$db_size += $row['Data_length']+$row['Index_length'];
 			}
@@ -130,13 +130,13 @@ print_progress($step);
 		<td class="row1"><?php
 
 			if ($_POST['step1']['old_path'] != '') {
-				$db     = @mysqli_connect($_POST['step1']['db_host'],$_POST['step1']['db_login'], urldecode($_POST['step1']['db_password']),$_POST['step1']['db_name']);
+				$db     = @mysqli_connect($_POST['step1']['db_host'], $_POST['step1']['db_login'], urldecode($_POST['step1']['db_password']), $_POST['step1']['db_name'] );
 			} else {
-				$db     = @mysqli_connect($_POST['step2']['db_host'],$_POST['step2']['db_login'], $_POST['step2']['db_password'],$_POST['step1']['db_name']);
+				$db     = @mysqli_connect($_POST['step2']['db_host'], $_POST['step2']['db_login'], $_POST['step2']['db_password'], $_POST['step1']['db_name']);
 			}
 
 			$sql    = 'SELECT VERSION() AS version';
-			$result = @mysqli_query($db,$sql);
+			$result = @mysqli_query($db, $sql);
 			$row    = @mysqli_fetch_assoc($result);
 			echo $row['version'];
 			?> <input type="hidden" name="log_mysql" value="<?php echo $row['version']; ?>" /></td>

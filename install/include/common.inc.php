@@ -37,10 +37,9 @@ $_defaults['content_dir'] = realpath('../').DIRECTORY_SEPARATOR.'temp';
 
 require('include/classes/sqlutility.php');
 
-$db = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 function my_add_null_slashes( $string ) {
-    return @mysqli_real_escape_string($db,stripslashes($string));
+    return @mysqli_real_escape_string($db, stripslashes($string));
 }
 function my_null_slashes($string) {
 	return $string;
@@ -89,7 +88,7 @@ function queryFromFile($sql_file_path)
 
 			if($prefixed_query[1] == 'CREATE TABLE')
 			{
-				if (mysqli_query($db,$prefixed_query[0]) !== false)
+				if (mysqli_query($db, $prefixed_query[0]) !== false)
 					$progress[] = 'Table <strong>'.$table . '</strong> created successfully.';
 				else 
 					if (mysqli_errno($db) == 1050)
@@ -97,13 +96,13 @@ function queryFromFile($sql_file_path)
 					else
 						$errors[] = 'Table <strong>' . $table . '</strong> creation failed.';
 			}elseif($prefixed_query[1] == 'INSERT INTO'){
-				mysqli_query($db,$prefixed_query[0]);
+				mysqli_query($db, $prefixed_query[0]);
 			}elseif($prefixed_query[1] == 'DELETE FROM'){
-				mysqli_query($db,$prefixed_query[0]);
+				mysqli_query($db, $prefixed_query[0]);
 			}elseif($prefixed_query[1] == 'REPLACE INTO'){
-				mysqli_query($db,$prefixed_query[0]);
+				mysqli_query($db, $prefixed_query[0]);
 			}elseif($prefixed_query[1] == 'ALTER TABLE'){
-				if (mysqli_query($db,$prefixed_query[0]) !== false)
+				if (mysqli_query($db, $prefixed_query[0]) !== false)
 					$progress[] = 'Table <strong>'.$table.'</strong> altered successfully.';
 				else
 					if (mysqli_errno($db) == 1060) 
@@ -113,9 +112,9 @@ function queryFromFile($sql_file_path)
 					else
 						$errors[] = 'Table <strong>'.$table.'</strong> alteration failed.';
 			}elseif($prefixed_query[1] == 'DROP TABLE'){
-				mysqli_query($db,$prefixed_query[1] . ' ' .$table);
+				mysqli_query($db, $prefixed_query[1] . ' ' .$table);
 			}elseif($prefixed_query[1] == 'UPDATE'){
-				mysqli_query($db,$prefixed_query[0]);
+				mysqli_query($db, $prefixed_query[0]);
 			}
 		}
 	}
