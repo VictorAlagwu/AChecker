@@ -25,7 +25,7 @@ class SqlUtility
  	* @return  boolean  always true
  	* @access  public
  	*/
-	function splitSqlFile(&$ret, $sql)
+	function splitSqlFile($ret, $sql)
 	{
 		$sql               = trim($sql);
 		$sql_len           = strlen($sql);
@@ -45,7 +45,7 @@ class SqlUtility
 					// substring to the returned array
                 	if (!$i) {
 						$ret[] = $sql;
-                    	return true;
+                    	return $ret;
                 	}
 					// Backquotes or no backslashes before 
 					// quotes: it's indeed the end of the 
@@ -89,7 +89,7 @@ class SqlUtility
 					$i      = -1;
             	} else {
                 	// The submited statement(s) end(s) here
-                	return true;
+                	return $ret;
 				}
         	} // end else if (is delimiter)
         	// ... then check for start of a string,...
@@ -111,7 +111,7 @@ class SqlUtility
                 // no eol found after '#', add the parsed part to the returned
                 // array and exit
                		$ret[]   = trim(substr($sql, 0, $i-1));
-               		return true;
+               		return $ret;
 				} else {
                 	$sql     = substr($sql, 0, $start_of_comment) . ltrim(substr($sql, $end_of_comment));
                 	$sql_len = strlen($sql);
@@ -124,7 +124,7 @@ class SqlUtility
     	if (!empty($sql) && trim($sql) != '') {
 			$ret[] = $sql;
     	}
-    	return true;
+    	return $ret;
 	}
 
 	/**

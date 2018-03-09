@@ -62,7 +62,7 @@ class AccessibilityValidator {
 	 * $content: string, html content to check
 	 * $guidelines: array, guidelines to check on
 	 */
-	function AccessibilityValidator($content, $guidelines, $uri = '')
+	function __construct($content, $guidelines, $uri = '')
 	{
 		$this->validate_content = $content;
 		$this->guidelines = $guidelines;
@@ -141,7 +141,7 @@ class AccessibilityValidator {
 		global $msg;
 		
 		$dom = str_get_dom($content);
-		
+	
 		if (count($dom->find('html')) == 0)
 		{
 			$complete_html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'.
