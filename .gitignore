@@ -17,5 +17,10 @@ $RECYCLE.BIN/
 # Local config AChecker
 include/config.inc.php
 
+<<<<<<< HEAD
 # Remove Idea Folder
 /.idea
+=======
+# VSCode
+/.vscode
+>>>>>>> 697cd0a70515d253b690f0b6a6833e78406a41a2
