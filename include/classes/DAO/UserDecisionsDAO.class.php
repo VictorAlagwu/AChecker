@@ -117,7 +117,7 @@ class UserDecisionsDAO extends DAO {
 	 * @return  true    if update successfully
 	 *          false   if update unsuccessful
 	 * @author  Cindy Qi Li
-	 */
+	 */ 
 	public function setDecision($user_link_id, $line_num, $col_num, $check_id, $decision)
 	{
 		global $addslashes;

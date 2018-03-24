@@ -997,13 +997,13 @@ class Savant2 {
 	public function assign()
 	{
 		// get the arguments; there may be 1 or 2.
-		$arg0 = @func_get_arg(0);
-		$arg1 = @func_get_arg(1);
+		$firstArg = @func_get_arg(0);
+		$secArg = @func_get_arg(1);
 		
 		// assign from object
-		if (is_object($arg0)) {
+		if (is_object($firstArg)) {
 			// assign public properties
-			foreach (get_object_vars($arg0) as $key => $val) {
+			foreach (get_object_vars($firstArg) as $key => $val) {
 				// can't assign to __config
 				if ($key != '__config') {
 					$this->$key = $val;
@@ -1013,8 +1013,8 @@ class Savant2 {
 		}
 		
 		// assign from associative array
-		if (is_array($arg0)) {
-			foreach ($arg0 as $key => $val) {
+		if (is_array($firstArg)) {
+			foreach ($firstArg as $key => $val) {
 				// can't assign to __config
 				if ($key != '__config') {
 					$this->$key = $val;
@@ -1024,58 +1024,14 @@ class Savant2 {
 		}
 		
 		// assign by name and value (can't assign to __config).
-		if (is_string($arg0) && func_num_args() > 1 && $arg0 != '__config') {
-			$this->$arg0 = $arg1;
+		if (is_string($firstArg) && func_num_args() > 1 && $firstArg != '__config') {
+			$this->$firstArg = $secArg;
 			return true;
 		}
 		
-		// $arg0 was not object, array, or string.
+		// $firstArg was not object, array, or string.
 		return false;
 	}
-	// function assign()
-	// {
-	// 	// this method is overloaded.
-	// 	$arg = func_get_args();
-		
-	// 	// must have at least one argument. no error, just do nothing.
-	// 	if (! isset($arg[0])) {
-	// 		return;
-	// 	}
-		
-	// 	// assign by object
-	// 	if (is_object($arg[0])) {
-	// 		// assign public properties
-	// 		foreach (get_object_vars($arg[0]) as $key => $val) {
-	// 			if (substr($key, 0, 1) != '_') {
-	// 				$this->$key = $val;
-	// 			}
-	// 		}
-	// 		return;
-	// 	}
-		
-	// 	// assign by associative array
-	// 	if (is_array($arg[0])) {
-	// 		foreach ($arg[0] as $key => $val) {
-	// 			if (substr($key, 0, 1) != '_') {
-	// 				$this->$key = $val;
-	// 			}
-	// 		}
-	// 		return;
-	// 	}
-		
-	// 	// assign by string name and mixed value.
-	// 	// 
-	// 	// we use array_key_exists() instead of isset() becuase isset()
-	// 	// fails if the value is set to null.
-	// 	if (is_string($arg[0]) &&
-	// 		substr($arg[0], 0, 1) != '_' &&
-	// 		array_key_exists(1, $arg)) {
-	// 		$this->$arg[0] = $arg[1];
-	// 	} else {
-	// 		return $this->error(SAVANT2_ERROR_ASSIGN, $arg);
-	// 	}
-	// }
-	
 	
 	/**
 	* 

@@ -29,11 +29,6 @@ class LanguageUtility {
 	* @author  Cindy Qi Li
 	*/
 	public static function getParentCode($code = '') {
-
-		// Old Code
-		// if (!$code && isset($this)) {
-		// 	$code = $this->code;
-		// }
 		$code = !isset($code) ? self::code:$code;
 
 		$peices = explode(AC_LANGUAGE_LOCALE_SEP, $code, 2);
@@ -49,10 +44,6 @@ class LanguageUtility {
 	*/
 	public static function getLocale($code = '') {
 
-	    // Old Code
-		// if (!$code && isset($this)) {
-		// 	$code = $this->code;
-		// }
 		$code = !isset($code) ? self::code:$code;
 
 		$peices = explode(AC_LANGUAGE_LOCALE_SEP, $code, 2);
