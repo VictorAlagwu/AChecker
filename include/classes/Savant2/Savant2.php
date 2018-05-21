@@ -401,7 +401,7 @@ class Savant2 {
 	* 
 	*/
 	
-	function setCompiler(&$compiler)
+	function setCompiler($compiler)
 	{
 		if (! $compiler) {
 			// nullify any current compiler
@@ -1050,7 +1050,7 @@ class Savant2 {
 	* 
 	* @param string $key The name for the reference in the template.
 	*
-	* @param mixed &$val The referenced variable.
+	* @param mixed $val The referenced variable.
 	* 
 	* @return void
 	* 
@@ -1058,7 +1058,7 @@ class Savant2 {
 	* 
 	*/
 	
-	function assignRef($key, &$val)
+	function assignRef($key, $val)
 	{
 		if (is_string($key) && substr($key, 0, 1) != '_') {
 			$this->$key = $val;
@@ -1483,7 +1483,7 @@ class Savant2 {
 		$args = func_get_args();
 		array_shift($args);
 		return call_user_func_array(
-			array(&$this->_resource['plugin'][$name], 'plugin'), $args
+			array($this->_resource['plugin'][$name], 'plugin'), $args
 		);
 	}
 	
@@ -1509,7 +1509,7 @@ class Savant2 {
 		$args = func_get_args();
 		
 		$result = call_user_func_array(
-			array(&$this, 'splugin'),
+			array($this, 'splugin'),
 			$args
 		);
 		
@@ -1549,7 +1549,7 @@ class Savant2 {
 		
 		// call the plugin() method
 		return call_user_func_array(
-			array(&$this, $this->_call),
+			array($this, $this->_call),
 			$args
 		);
 	}
@@ -1764,14 +1764,14 @@ class Savant2 {
 	* 
 	* @access public
 	* 
-	* @param object &$obj The object to be tested.
+	* @param object $obj The object to be tested.
 	* 
 	* @return boolean True if $obj is an error object of the type
 	* Savant2_Error, or is a subclass that Savant2_Error. False if not.
 	*
 	*/
 	
-	function isError(&$obj)
+	function isError($obj)
 	{
 		if (is_object($obj)) {
 			if (is_a($obj, 'Savant2_Error') ||
